@@ -80,7 +80,6 @@ namespace StringCalculatorLib.Tests
             Assert.AreEqual(actual, expected, 0.001, "calc");
         }
 
-
         [DataTestMethod]
         [DataRow("0", 0)]
         [DataRow("", 0)]
@@ -102,6 +101,48 @@ namespace StringCalculatorLib.Tests
             // Assert
 
             Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
+        /*
+        [DataTestMethod]
+        //[DataRow("0", 0)]
+        //[DataRow("", 0)]
+        //[DataRow("5,tytyt", 5)]
+        //[DataRow("5,tytyt,10", 15)]
+        //[DataRow("1,2,3,4,5,6,7,8,9,10,11,12", 78)]
+        //[DataRow("1\n2,3", 6)]
+        public void Add_Test_CalculatorServiceReq04(string caclString, double expected)
+        {
+            // Arrange
+
+            CalculatorServiceReq04 svc = new CalculatorServiceReq04();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
+            double actual = calc.Add(caclString);
+
+            // Assert
+
+            Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
+        */
+ 
+        [TestMethod]
+        [ExpectedException(typeof(NegativeNumberException))]
+        public void Add_Test_CalculatorServiceReq04_negative()
+        {
+            // Arrange
+
+            CalculatorServiceReq04 svc = new CalculatorServiceReq04();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
+            double actual = calc.Add("1,2,3,4,5,6,+7,8,9,10,11,-12");
+
+            // Assert - Expects NegativeNumberException
+
+             
         }
     }
 }

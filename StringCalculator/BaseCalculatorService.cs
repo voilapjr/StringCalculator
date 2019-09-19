@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SimpleStringCalculator
 {
@@ -57,5 +58,17 @@ namespace SimpleStringCalculator
         }
 
         protected bool IsNumeric(object val) => double.TryParse(val.ToString(), out double result);
+    }
+
+    public class NegativeNumberException : Exception
+    {
+        public NegativeNumberException()
+        {
+        }
+
+        public NegativeNumberException(List<double> list)
+            : base($"One or more negative number were found:'{string.Join(", ", list)}'.\nNegative numbers are not allowed!")
+        {
+        }
     }
 }
