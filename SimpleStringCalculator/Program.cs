@@ -1,4 +1,5 @@
-﻿using SimpleStringCalculator.CalculatorServices;
+﻿ 
+using StringCalculatorLib.CalculatorServices;
 using System;
 
 namespace SimpleStringCalculator
@@ -11,14 +12,15 @@ namespace SimpleStringCalculator
             Console.WriteLine("Hello: Input calculation string:");
 
             Console.Out.Flush();
+
             var calcinfo = Console.ReadLine();
 
-            //calc here
-            Dummy svc = new Dummy();
+           
+            CalculatorServiceReq01 svc = new CalculatorServiceReq01();
             SimpleStringCalculator.StringCalculator calc = new SimpleStringCalculator.StringCalculator(svc);
             var ret = calc.Add(calcinfo);
 
-            Console.WriteLine("Your string is: " + calcinfo + " :: " + ret);
+            Console.WriteLine(calc.ResultFormula);
         }
     }
 }

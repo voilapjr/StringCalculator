@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SimpleStringCalculator
+﻿namespace SimpleStringCalculator
 {
     public class StringCalculator
     {
         private BaseCalculatorService _calcService;
+
+        public string ResultFormula { get; private set; }
 
         public StringCalculator(BaseCalculatorService calcService)
         {
@@ -15,7 +13,9 @@ namespace SimpleStringCalculator
 
         public double Add(string stringNumberInput)
         {
-            return _calcService.Add(stringNumberInput);
+            double ret = _calcService.Add(stringNumberInput);
+            ResultFormula = _calcService.ResultFormula;
+            return ret;
         }
     }
 }

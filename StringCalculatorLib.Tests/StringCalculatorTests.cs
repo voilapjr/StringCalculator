@@ -1,13 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleStringCalculator;
-using SimpleStringCalculator.CalculatorServices;
+using StringCalculatorLib.CalculatorServices;
 
 namespace StringCalculatorLib.Tests
 {
     [TestClass]
     public class StringCalculatorTests
     {
-        [DataTestMethod]
         //[DataRow("", 0)]
         //[DataRow(null, 0)]
         //[DataRow("5,tytyt", 5)]
@@ -21,8 +20,9 @@ namespace StringCalculatorLib.Tests
         //[DataRow("//[*][!!][r9r]\n11r9r22*33!!aaa*44.123*1000*1006", 1110.123)]
 
 
+        [DataTestMethod]
         [DataRow("0", 0)]
-        public void AddTest(string caclString, double expected)
+        public void Add_Test_Dummy(string caclString, double expected)
         {
             // Arrange
 
@@ -31,7 +31,27 @@ namespace StringCalculatorLib.Tests
 
             // Act
 
-            var z = calc.Add(caclString);
+            double actual = calc.Add(caclString);
+
+            // Assert
+
+            Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
+
+        [DataTestMethod]
+        [DataRow("0", 0)]
+        [DataRow("", 0)]
+        [DataRow("5,tytyt", 5)]
+        [DataRow("5,tytyt,10", 5)]
+        public void Add_Test_CalculatorServiceReq01(string caclString, double expected)
+        {
+            // Arrange
+
+            CalculatorServiceReq01 svc = new CalculatorServiceReq01();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
             double actual = calc.Add(caclString);
 
             // Assert

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using SimpleStringCalculator;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleStringCalculator.CalculatorServices
+namespace StringCalculatorLib.CalculatorServices
 {
     public class Dummy : BaseCalculatorService
     {
