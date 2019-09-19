@@ -16,7 +16,7 @@ namespace SimpleStringCalculator
             var calcinfo = Console.ReadLine();
 
 
-            CalculatorServiceReq02 svc = new CalculatorServiceReq02();
+            CalculatorServiceReq03 svc = new CalculatorServiceReq03();
             SimpleStringCalculator.StringCalculator calc = new SimpleStringCalculator.StringCalculator(svc);
             var ret = calc.Add(calcinfo);
 

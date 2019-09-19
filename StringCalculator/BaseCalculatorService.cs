@@ -4,7 +4,7 @@ namespace SimpleStringCalculator
 {
     public abstract class BaseCalculatorService
     {
-        protected List<string> stringNumberDelimiters = new List<string> { "," };
+        protected List<string> stringNumberDelimiters = new List<string> { ",", "\n" };
 
         protected string nunmberString = string.Empty;
 
