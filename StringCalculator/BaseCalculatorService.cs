@@ -58,6 +58,11 @@ namespace SimpleStringCalculator
         }
 
         protected bool IsNumeric(object val) => double.TryParse(val.ToString(), out double result);
+
+        protected bool IsLessThanOrEqualTo(double threshold, double val)
+        {
+            return val <= threshold ? true : false;
+        }
     }
 
     public class NegativeNumberException : Exception

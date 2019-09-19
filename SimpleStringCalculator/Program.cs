@@ -9,14 +9,14 @@ namespace SimpleStringCalculator
         static void Main(string[] args)
         {
             Console.WriteLine("String Calculator:");
-            Console.WriteLine("Hello: Input calculation string:");
+            Console.WriteLine("Hello! Input your calculation string:");
 
             Console.Out.Flush();
 
             var calcinfo = Console.ReadLine();
 
 
-            CalculatorServiceReq04 svc = new CalculatorServiceReq04();
+            CalculatorServiceReq05 svc = new CalculatorServiceReq05();
             SimpleStringCalculator.StringCalculator calc = new SimpleStringCalculator.StringCalculator(svc);
 
 
