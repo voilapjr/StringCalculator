@@ -19,7 +19,6 @@ namespace StringCalculatorLib.Tests
         //[DataRow("//[\n][*][!!][r9r]\n11r9r22*33!!44, null", 110)]
         //[DataRow("//[*][!!][r9r]\n11r9r22*33!!aaa*44.123*1000*1006", 1110.123)]
 
-
         [DataTestMethod]
         [DataRow("0", 0)]
         public void Add_Test_Dummy(string caclString, double expected)
@@ -48,6 +47,28 @@ namespace StringCalculatorLib.Tests
             // Arrange
 
             CalculatorServiceReq01 svc = new CalculatorServiceReq01();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
+            double actual = calc.Add(caclString);
+
+            // Assert
+
+            Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
+
+        [DataTestMethod]
+        [DataRow("0", 0)]
+        [DataRow("", 0)]
+        [DataRow("5,tytyt", 5)]
+        [DataRow("5,tytyt,10", 15)]
+        [DataRow("1,2,3,4,5,6,7,8,9,10,11,12", 78)]
+        public void Add_Test_CalculatorServiceReq02(string caclString, double expected)
+        {
+            // Arrange
+
+            CalculatorServiceReq02 svc = new CalculatorServiceReq02();
             StringCalculator calc = new StringCalculator(svc);
 
             // Act
