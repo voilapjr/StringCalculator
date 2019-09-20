@@ -168,5 +168,32 @@ namespace StringCalculatorLib.Tests
 
             Assert.AreEqual(actual, expected, 0.001, "calc");
         }
+
+
+        [DataTestMethod]
+        [DataRow("0", 0)]
+        [DataRow("", 0)]
+        [DataRow("5,tytyt", 5)]
+        [DataRow("5,tytyt,10", 15)]
+        [DataRow("1,2,3,4,5,6,7,8,9,10,11,12", 78)]
+        [DataRow("1\n2,3", 6)]
+        [DataRow("2,1001,6", 8)]
+        [DataRow("2,1000.5,6,10.5", 18.5)]
+        [DataRow("//;\n2;5", 7)]
+        public void Add_Test_CalculatorServiceReq06(string caclString, double expected)
+        {
+            // Arrange
+
+            CalculatorServiceReq06 svc = new CalculatorServiceReq06();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
+            double actual = calc.Add(caclString);
+
+            // Assert
+
+            Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
     }
 }

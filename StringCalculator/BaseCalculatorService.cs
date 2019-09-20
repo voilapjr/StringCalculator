@@ -9,10 +9,15 @@ namespace SimpleStringCalculator
 
         protected string nunmberString = string.Empty;
 
-        //protected string formatString = string.Empty;
-
         protected List<string> valueList;
         protected List<double> numberList;
+
+        protected string formatString = string.Empty;
+
+        protected const string CustomDelimiterIdentifier = "//";
+
+
+
 
         public double Result { get; protected set; }
 
