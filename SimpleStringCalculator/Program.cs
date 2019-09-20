@@ -1,12 +1,11 @@
-﻿ 
-using StringCalculatorLib.CalculatorServices;
+﻿using StringCalculatorLib.CalculatorServices;
 using System;
 
 namespace SimpleStringCalculator
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("String Calculator:");
             Console.WriteLine("Hello! Input your calculation string:");
@@ -15,10 +14,8 @@ namespace SimpleStringCalculator
 
             var calcinfo = Console.ReadLine();
 
-
-            CalculatorServiceReq07 svc = new CalculatorServiceReq07();
+            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
             SimpleStringCalculator.StringCalculator calc = new SimpleStringCalculator.StringCalculator(svc);
-
 
             try
             {
@@ -29,8 +26,6 @@ namespace SimpleStringCalculator
             {
                 Console.WriteLine(e.Message);
             }
-
-           
         }
     }
 }

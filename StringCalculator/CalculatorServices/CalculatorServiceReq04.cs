@@ -30,7 +30,7 @@ namespace StringCalculatorLib.CalculatorServices
             this.Result = numberList.Sum();
 
             Debug.WriteLine(nunmberString);
-            Debug.WriteLine(this.ResultFormula);
+            Debug.WriteLine(this.GetResultFormula("+"));
             Debug.WriteLine(Result);
 
             return Result;

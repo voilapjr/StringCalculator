@@ -17,7 +17,7 @@ namespace StringCalculatorLib.CalculatorServices
             var splitter = -2;
             if (stringNumberInput.StartsWith(CustomDelimiterIdentifier))
             {
-                 splitter = stringNumberInput.IndexOf("\n");
+                splitter = stringNumberInput.IndexOf("\n");
                 if (splitter == 3)
                 {
                     nunmberString = stringNumberInput.Substring(4);
@@ -26,7 +26,7 @@ namespace StringCalculatorLib.CalculatorServices
                 }
                 else
                 {
-                     splitter = stringNumberInput.IndexOf("]\n");
+                    splitter = stringNumberInput.IndexOf("]\n");
                     if (splitter == -1)
                     {
                         nunmberString = stringNumberInput;
@@ -37,7 +37,7 @@ namespace StringCalculatorLib.CalculatorServices
                         formatString = stringNumberInput.Substring(3, splitter - 3);
                         string[] additionalDeliminators = formatString.Split(formatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                        if (additionalDeliminators.Length>1)
+                        if (additionalDeliminators.Length > 1)
                         {
                             throw new Exception("Too many custom delimiters!");
                         }
@@ -68,7 +68,7 @@ namespace StringCalculatorLib.CalculatorServices
             this.Result = numberList.Sum();
 
             Debug.WriteLine(nunmberString);
-            Debug.WriteLine(this.ResultFormula);
+            Debug.WriteLine(this.GetResultFormula("+"));
             Debug.WriteLine(Result);
 
             return Result;

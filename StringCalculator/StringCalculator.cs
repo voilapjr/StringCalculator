@@ -14,7 +14,7 @@
         public double Add(string stringNumberInput)
         {
             double ret = _calcService.Add(stringNumberInput);
-            ResultFormula = _calcService.ResultFormula;
+            ResultFormula = _calcService.GetResultFormula("+");
             return ret;
         }
     }

@@ -1,25 +1,18 @@
 ﻿using SimpleStringCalculator;
-using System;
 using System.Diagnostics;
 using System.Linq;
 
 namespace StringCalculatorLib.CalculatorServices
 {
-    public class CalculatorServiceReq03 : BaseCalculatorService
+    public class CalculatorServiceReq08 : BaseCalculatorService
     {
         public override double Add(string stringNumberInput)
         {
             if (string.IsNullOrEmpty(stringNumberInput)) return 0;
 
-            stringNumberInput = prepInputString(stringNumberInput);
+            var listOfNumbers = GetListOfNumbersFromInput(stringNumberInput);
 
-            nunmberString = stringNumberInput;
-
-            valueList = nunmberString.Split(stringNumberDelimiters.ToArray(), StringSplitOptions.None).ToList();
-
-            numberList = (from x in valueList select GetDouble(x)).ToList();
-
-            this.Result = numberList.Sum();
+            this.Result = listOfNumbers.Sum();
 
             Debug.WriteLine(nunmberString);
             Debug.WriteLine(this.GetResultFormula("+"));
