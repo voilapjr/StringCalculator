@@ -15,7 +15,7 @@ namespace SimpleStringCalculator
         protected string formatString = string.Empty;
 
         protected const string CustomDelimiterIdentifier = "//";
-
+        protected List<string> formatDelimiter = new List<string> { "][" };
 
 
 
