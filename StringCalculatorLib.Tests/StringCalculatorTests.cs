@@ -169,7 +169,6 @@ namespace StringCalculatorLib.Tests
             Assert.AreEqual(actual, expected, 0.001, "calc");
         }
 
-
         [DataTestMethod]
         [DataRow("0", 0)]
         [DataRow("", 0)]
@@ -196,7 +195,6 @@ namespace StringCalculatorLib.Tests
             Assert.AreEqual(actual, expected, 0.001, "calc");
         }
 
-
         [DataTestMethod]
         [DataRow("0", 0)]
         [DataRow("", 0)]
@@ -208,7 +206,7 @@ namespace StringCalculatorLib.Tests
         [DataRow("2,1000.5,6,10.5", 18.5)]
         [DataRow("//;\n2;5", 7)]
         [DataRow("//[***]\n11***22***33", 66)]
-       // [DataRow("//[\n][*][!!][r9r]\n11r9r22*33!!44, null", 110)]
+        // [DataRow("//[\n][*][!!][r9r]\n11r9r22*33!!44, null", 110)]
         public void Add_Test_CalculatorServiceReq07(string caclString, double expected)
         {
             // Arrange
@@ -224,7 +222,6 @@ namespace StringCalculatorLib.Tests
 
             Assert.AreEqual(actual, expected, 0.001, "calc");
         }
-
 
         [DataTestMethod]
         [DataRow("0", 0)]
@@ -248,6 +245,61 @@ namespace StringCalculatorLib.Tests
             // Act
 
             double actual = calc.Add(caclString);
+
+            // Assert
+
+            Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
+
+        [DataTestMethod]
+        [DataRow("5,2,10", -7)]
+        public void Test_CalculatorServiceStretch05_Subtract(string caclString, double expected)
+        {
+            // Arrange
+
+            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
+            double actual = calc.Subtract(caclString);
+
+            // Assert
+
+            Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
+
+        [DataTestMethod]
+        [DataRow("5,2,10", 100)]
+        public void Test_CalculatorServiceStretch05_Multiply(string caclString, double expected)
+        {
+            // Arrange
+
+            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
+            double actual = calc.Multiply(caclString);
+
+            // Assert
+
+            Assert.AreEqual(actual, expected, 0.001, "calc");
+        }
+
+
+        [DataTestMethod]
+        [DataRow("5,2,10", 0.25)]
+        public void Test_CalculatorServiceStretch05_Divide(string caclString, double expected)
+        {
+            // Arrange
+
+            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
+            StringCalculator calc = new StringCalculator(svc);
+
+            // Act
+
+            double actual = calc.Divide(caclString);
 
             // Assert
 

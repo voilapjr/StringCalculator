@@ -1,4 +1,6 @@
-﻿namespace SimpleStringCalculator
+﻿using System;
+
+namespace SimpleStringCalculator
 {
     public class StringCalculator
     {
@@ -15,6 +17,26 @@
         {
             double ret = _calcService.Add(stringNumberInput);
             ResultFormula = _calcService.GetResultFormula("+");
+            return ret;
+        }
+        public double Subtract(string stringNumberInput)
+        {
+            double ret = _calcService.Subtract(stringNumberInput);
+            ResultFormula = _calcService.GetResultFormula("-");
+            return ret;
+        }
+
+        public double Divide(string stringNumberInput)
+        {
+            double ret = _calcService.Divide(stringNumberInput);
+            ResultFormula = _calcService.GetResultFormula("/");
+            return ret;
+        }
+
+        public double Multiply(string stringNumberInput)
+        {
+            double ret = _calcService.Multiply(stringNumberInput);
+            ResultFormula = _calcService.GetResultFormula("*");
             return ret;
         }
     }

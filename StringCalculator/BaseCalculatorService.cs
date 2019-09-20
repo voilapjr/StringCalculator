@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SimpleStringCalculator
@@ -19,6 +20,86 @@ namespace SimpleStringCalculator
         protected List<string> formatDelimiter = new List<string> { "][" };
 
         public double Result { get; protected set; }
+
+        public virtual double Subtract(string stringNumberInput)
+        {
+            if (string.IsNullOrEmpty(stringNumberInput)) return 0;
+
+            var listOfNumbers = GetListOfNumbersFromInput(stringNumberInput);
+
+            if (!listOfNumbers.Any())
+            {
+                this.Result = 0;
+                return Result;
+            }
+            this.Result = listOfNumbers[0];
+
+            for (int i = 1; i < listOfNumbers.Count; i++)
+            {
+                double x = listOfNumbers[i];
+                Result -= x;
+            }
+
+            Debug.WriteLine(nunmberString);
+            Debug.WriteLine(this.GetResultFormula("-"));
+            Debug.WriteLine(Result);
+
+            return Result;
+        }
+
+        public virtual double Multiply(string stringNumberInput)
+        {
+            if (string.IsNullOrEmpty(stringNumberInput)) return 0;
+
+            var listOfNumbers = GetListOfNumbersFromInput(stringNumberInput);
+
+            if (!listOfNumbers.Any())
+            {
+                this.Result = 0;
+                return Result;
+            }
+            this.Result = listOfNumbers[0];
+
+            for (int i = 1; i < listOfNumbers.Count; i++)
+            {
+                double x = listOfNumbers[i];
+                Result = Result * x;
+            }
+
+            Debug.WriteLine(nunmberString);
+            Debug.WriteLine(this.GetResultFormula("*"));
+            Debug.WriteLine(Result);
+
+            return Result;
+        }
+
+        public virtual double Divide(string stringNumberInput)
+        {
+            if (string.IsNullOrEmpty(stringNumberInput)) return 0;
+
+            var listOfNumbers = GetListOfNumbersFromInput(stringNumberInput);
+
+            listOfNumbers = (from x in listOfNumbers where x > 0 select x).ToList();
+
+            if (!listOfNumbers.Any())
+            {
+                this.Result = 0;
+                return Result;
+            }
+            this.Result = listOfNumbers[0];
+
+            for (int i = 1; i < listOfNumbers.Count; i++)
+            {
+                double x = listOfNumbers[i];
+                Result = Result / x;
+            }
+
+            Debug.WriteLine(nunmberString);
+            Debug.WriteLine(this.GetResultFormula("/"));
+            Debug.WriteLine(Result);
+
+            return Result;
+        }
 
         public string GetResultFormula(string operation)
         {

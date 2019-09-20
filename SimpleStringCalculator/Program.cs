@@ -19,7 +19,7 @@ namespace SimpleStringCalculator
 
             try
             {
-                var ret = calc.Add(calcinfo);
+                var ret = calc.Multiply(calcinfo);
                 Console.WriteLine(calc.ResultFormula);
             }
             catch (Exception e)
