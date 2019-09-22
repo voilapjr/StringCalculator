@@ -1,5 +1,4 @@
-﻿using SimpleStringCalculator;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -11,26 +10,26 @@ namespace StringCalculatorLib.CalculatorServices
         {
             if (string.IsNullOrEmpty(stringNumberInput)) return 0;
 
-            stringNumberInput = prepInputString(stringNumberInput);
+            stringNumberInput = PrepInputString(stringNumberInput);
 
-            nunmberString = stringNumberInput;
+            NumberString = stringNumberInput;
 
-            valueList = nunmberString.Split(stringNumberDelimiters.ToArray(), StringSplitOptions.None).ToList();
+            ValueList = NumberString.Split(StringNumberDelimiters.ToArray(), StringSplitOptions.None).ToList();
 
-            numberList = (from x in valueList select GetDouble(x)).ToList();
+            NumberList = (from x in ValueList select GetDouble(x)).ToList();
 
-            var negativeNumberList = (from x in numberList where x < 0 select x).ToList();
+            var negativeNumberList = (from x in NumberList where x < 0 select x).ToList();
 
             if (negativeNumberList.Any())
             {
                 throw new NegativeNumberException(negativeNumberList);
             }
 
-            numberList = numberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
+            NumberList = NumberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
 
-            this.Result = numberList.Sum();
+            this.Result = NumberList.Sum();
 
-            Debug.WriteLine(nunmberString);
+            Debug.WriteLine(NumberString);
             Debug.WriteLine(this.GetResultFormula("+"));
             Debug.WriteLine(Result);
 

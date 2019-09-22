@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SimpleStringCalculator;
 using StringCalculatorLib.CalculatorServices;
 
 namespace StringCalculatorLib.Tests
@@ -139,7 +138,7 @@ namespace StringCalculatorLib.Tests
 
             // Act
 
-            double actual = calc.Add("1,2,3,4,5,6,+7,8,9,10,11,-12");
+            calc.Add("1,2,3,4,5,6,+7,8,9,10,11,-12");
 
             // Assert - Expects NegativeNumberException
         }

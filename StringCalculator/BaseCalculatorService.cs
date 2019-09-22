@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace SimpleStringCalculator
+namespace StringCalculatorLib
 {
     public abstract class BaseCalculatorService
     {
-        protected List<string> stringNumberDelimiters = new List<string> { ",", "\n" };
+        protected readonly List<string> StringNumberDelimiters = new List<string> { ",", "\n" };
 
-        protected string nunmberString = string.Empty;
+        protected string NumberString = string.Empty;
 
-        protected List<string> valueList;
-        protected List<double> numberList;
+        protected List<string> ValueList;
+        protected List<double> NumberList;
 
-        protected string formatString = string.Empty;
+        protected string FormatString = string.Empty;
 
         protected const string CustomDelimiterIdentifier = "//";
-        protected List<string> formatDelimiter = new List<string> { "][" };
+        protected readonly List<string> FormatDelimiter = new List<string> { "][" };
 
         public double Result { get; protected set; }
 
@@ -29,10 +29,10 @@ namespace SimpleStringCalculator
 
             if (!listOfNumbers.Any())
             {
-                this.Result = 0;
+                Result = 0;
                 return Result;
             }
-            this.Result = listOfNumbers[0];
+            Result = listOfNumbers[0];
 
             for (int i = 1; i < listOfNumbers.Count; i++)
             {
@@ -40,8 +40,8 @@ namespace SimpleStringCalculator
                 Result -= x;
             }
 
-            Debug.WriteLine(nunmberString);
-            Debug.WriteLine(this.GetResultFormula("-"));
+            Debug.WriteLine(NumberString);
+            Debug.WriteLine(GetResultFormula("-"));
             Debug.WriteLine(Result);
 
             return Result;
@@ -55,10 +55,10 @@ namespace SimpleStringCalculator
 
             if (!listOfNumbers.Any())
             {
-                this.Result = 0;
+                Result = 0;
                 return Result;
             }
-            this.Result = listOfNumbers[0];
+            Result = listOfNumbers[0];
 
             for (int i = 1; i < listOfNumbers.Count; i++)
             {
@@ -66,8 +66,8 @@ namespace SimpleStringCalculator
                 Result = Result * x;
             }
 
-            Debug.WriteLine(nunmberString);
-            Debug.WriteLine(this.GetResultFormula("*"));
+            Debug.WriteLine(NumberString);
+            Debug.WriteLine(GetResultFormula("*"));
             Debug.WriteLine(Result);
 
             return Result;
@@ -83,10 +83,10 @@ namespace SimpleStringCalculator
 
             if (!listOfNumbers.Any())
             {
-                this.Result = 0;
+                Result = 0;
                 return Result;
             }
-            this.Result = listOfNumbers[0];
+            Result = listOfNumbers[0];
 
             for (int i = 1; i < listOfNumbers.Count; i++)
             {
@@ -94,8 +94,8 @@ namespace SimpleStringCalculator
                 Result = Result / x;
             }
 
-            Debug.WriteLine(nunmberString);
-            Debug.WriteLine(this.GetResultFormula("/"));
+            Debug.WriteLine(NumberString);
+            Debug.WriteLine(GetResultFormula("/"));
             Debug.WriteLine(Result);
 
             return Result;
@@ -103,71 +103,71 @@ namespace SimpleStringCalculator
 
         public string GetResultFormula(string operation)
         {
-            if (this.numberList == null)
+            if (NumberList == null)
                 return string.Empty;
             string ret = string.Empty;
-            foreach (var x in this.numberList)
+            foreach (var x in NumberList)
             {
                 ret = ret + $"{operation}{GetDouble(x)}";
             }
-            return ret.Substring(1, ret.Length - 1) + " = " + this.Result.ToString();
+            return ret.Substring(1, ret.Length - 1) + " = " + Result;
         }
 
         public abstract double Add(string stringNumberInput);
 
         protected List<double> GetListOfNumbersFromInput(string stringNumberInput)
         {
-            stringNumberInput = prepInputString(stringNumberInput);
+            stringNumberInput = PrepInputString(stringNumberInput);
 
-            nunmberString = stringNumberInput;
-            var splitter = -2;
+            NumberString = stringNumberInput;
+            int splitter;
             if (stringNumberInput.StartsWith(CustomDelimiterIdentifier))
             {
-                splitter = stringNumberInput.IndexOf("\n");
+                splitter = stringNumberInput.IndexOf("\n", StringComparison.Ordinal);
                 if (splitter == 3)
                 {
-                    nunmberString = stringNumberInput.Substring(4);
-                    formatString = stringNumberInput.Substring(2, 1);
-                    stringNumberDelimiters.Add(formatString);
+                    NumberString = stringNumberInput.Substring(4);
+                    FormatString = stringNumberInput.Substring(2, 1);
+                    StringNumberDelimiters.Add(FormatString);
                 }
                 else
                 {
-                    splitter = stringNumberInput.IndexOf("]\n");
+                    splitter = stringNumberInput.IndexOf("]\n", StringComparison.Ordinal);
                     if (splitter == -1)
                     {
-                        nunmberString = stringNumberInput;
+                        NumberString = stringNumberInput;
                     }
                     else
                     {
-                        nunmberString = stringNumberInput.Substring(splitter + 2);
-                        formatString = stringNumberInput.Substring(3, splitter - 3);
-                        string[] additionalDeliminators = formatString.Split(formatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                        NumberString = stringNumberInput.Substring(splitter + 2);
+                        FormatString = stringNumberInput.Substring(3, splitter - 3);
+                        string[] additionalDeliminators = FormatString.Split(FormatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                        stringNumberDelimiters.AddRange(additionalDeliminators);
+                        StringNumberDelimiters.AddRange(additionalDeliminators);
                     }
                 }
             }
             else
             {
-                nunmberString = stringNumberInput;
+                NumberString = stringNumberInput;
             }
 
-            valueList = nunmberString.Split(stringNumberDelimiters.ToArray(), StringSplitOptions.None).ToList();
+            ValueList = NumberString.Split(StringNumberDelimiters.ToArray(), StringSplitOptions.None).ToList();
 
-            numberList = (from x in valueList select GetDouble(x)).ToList();
+            NumberList = (from x in ValueList select GetDouble(x)).ToList();
 
-            var negativeNumberList = (from x in numberList where x < 0 select x).ToList();
+            var negativeNumberList = (from x in NumberList where x < 0 select x).ToList();
 
             if (negativeNumberList.Any())
             {
                 throw new NegativeNumberException(negativeNumberList);
             }
 
-            numberList = numberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
-            return numberList;
+            NumberList = NumberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
+            return NumberList;
         }
 
-        protected string prepInputString(string stringNumberInput)
+        protected static string PrepInputString(string stringNumberInput)
         {
             return stringNumberInput.Replace("[,", string.Empty)
                 .Replace("\\n", "\n")
@@ -182,17 +182,15 @@ namespace SimpleStringCalculator
             {
                 return double.Parse(val.ToString());
             }
-            else
-            {
-                return 0;
-            }
+
+            return 0;
         }
 
-        protected bool IsNumeric(object val) => double.TryParse(val.ToString(), out double result);
+        protected bool IsNumeric(object val) => double.TryParse(val.ToString(), out _);
 
         protected bool IsLessThanOrEqualTo(double threshold, double val)
         {
-            return val <= threshold ? true : false;
+            return val <= threshold;
         }
     }
 

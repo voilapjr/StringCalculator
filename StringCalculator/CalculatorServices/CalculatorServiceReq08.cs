@@ -1,5 +1,4 @@
-﻿using SimpleStringCalculator;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 
 namespace StringCalculatorLib.CalculatorServices
@@ -14,7 +13,7 @@ namespace StringCalculatorLib.CalculatorServices
 
             this.Result = listOfNumbers.Sum();
 
-            Debug.WriteLine(nunmberString);
+            Debug.WriteLine(NumberString);
             Debug.WriteLine(this.GetResultFormula("+"));
             Debug.WriteLine(Result);
 

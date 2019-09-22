@@ -1,5 +1,4 @@
-﻿using SimpleStringCalculator;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -11,63 +10,63 @@ namespace StringCalculatorLib.CalculatorServices
         {
             if (string.IsNullOrEmpty(stringNumberInput)) return 0;
 
-            stringNumberInput = prepInputString(stringNumberInput);
+            stringNumberInput = PrepInputString(stringNumberInput);
 
-            nunmberString = stringNumberInput;
-            var splitter = -2;
+            NumberString = stringNumberInput;
+            int splitter;
             if (stringNumberInput.StartsWith(CustomDelimiterIdentifier))
             {
-                splitter = stringNumberInput.IndexOf("\n");
+                splitter = stringNumberInput.IndexOf("\n", StringComparison.Ordinal);
                 if (splitter == 3)
                 {
-                    nunmberString = stringNumberInput.Substring(4);
-                    formatString = stringNumberInput.Substring(2, 1);
-                    stringNumberDelimiters.Add(formatString);
+                    NumberString = stringNumberInput.Substring(4);
+                    FormatString = stringNumberInput.Substring(2, 1);
+                    StringNumberDelimiters.Add(FormatString);
                 }
                 else
                 {
-                    splitter = stringNumberInput.IndexOf("]\n");
+                    splitter = stringNumberInput.IndexOf("]\n", StringComparison.Ordinal);
                     if (splitter == -1)
                     {
-                        nunmberString = stringNumberInput;
+                        NumberString = stringNumberInput;
                     }
                     else
                     {
-                        nunmberString = stringNumberInput.Substring(splitter + 2);
-                        formatString = stringNumberInput.Substring(3, splitter - 3);
-                        string[] additionalDeliminators = formatString.Split(formatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                        NumberString = stringNumberInput.Substring(splitter + 2);
+                        FormatString = stringNumberInput.Substring(3, splitter - 3);
+                        string[] additionalDeliminators = FormatString.Split(FormatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
                         if (additionalDeliminators.Length > 1)
                         {
                             throw new Exception("Too many custom delimiters!");
                         }
 
-                        stringNumberDelimiters.AddRange(additionalDeliminators);
+                        StringNumberDelimiters.AddRange(additionalDeliminators);
                     }
                 }
             }
             else
             {
-                nunmberString = stringNumberInput;
+                NumberString = stringNumberInput;
             }
 
 
-            valueList = nunmberString.Split(stringNumberDelimiters.ToArray(), StringSplitOptions.None).ToList();
+            ValueList = NumberString.Split(StringNumberDelimiters.ToArray(), StringSplitOptions.None).ToList();
 
-            numberList = (from x in valueList select GetDouble(x)).ToList();
+            NumberList = (from x in ValueList select GetDouble(x)).ToList();
 
-            var negativeNumberList = (from x in numberList where x < 0 select x).ToList();
+            var negativeNumberList = (from x in NumberList where x < 0 select x).ToList();
 
             if (negativeNumberList.Any())
             {
                 throw new NegativeNumberException(negativeNumberList);
             }
 
-            numberList = numberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
+            NumberList = NumberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
 
-            this.Result = numberList.Sum();
+            this.Result = NumberList.Sum();
 
-            Debug.WriteLine(nunmberString);
+            Debug.WriteLine(NumberString);
             Debug.WriteLine(this.GetResultFormula("+"));
             Debug.WriteLine(Result);
 

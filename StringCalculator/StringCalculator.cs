@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SimpleStringCalculator
+﻿namespace StringCalculatorLib
 {
     public class StringCalculator
     {

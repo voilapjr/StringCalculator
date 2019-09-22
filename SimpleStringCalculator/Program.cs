@@ -1,25 +1,26 @@
 ﻿using StringCalculatorLib.CalculatorServices;
 using System;
+using StringCalculatorLib;
 
 namespace SimpleStringCalculator
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine("String Calculator:");
             Console.WriteLine("Hello! Input your calculation string:");
 
             Console.Out.Flush();
 
-            var calcinfo = Console.ReadLine();
+            var calcInfo = Console.ReadLine();
 
             CalculatorServiceReq08 svc = new CalculatorServiceReq08();
-            SimpleStringCalculator.StringCalculator calc = new SimpleStringCalculator.StringCalculator(svc);
+            StringCalculator calc = new StringCalculator(svc);
 
             try
             {
-                var ret = calc.Multiply(calcinfo);
+                calc.Multiply(calcInfo);
                 Console.WriteLine(calc.ResultFormula);
             }
             catch (Exception e)

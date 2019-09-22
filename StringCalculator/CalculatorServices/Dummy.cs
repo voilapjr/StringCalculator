@@ -1,6 +1,4 @@
-﻿using SimpleStringCalculator;
-
-namespace StringCalculatorLib.CalculatorServices
+﻿namespace StringCalculatorLib.CalculatorServices
 {
     public class Dummy : BaseCalculatorService
     {
