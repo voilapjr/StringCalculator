@@ -7,17 +7,16 @@ namespace StringCalculatorLib
 {
     public abstract class BaseCalculatorService
     {
-        protected readonly List<string> StringNumberDelimiters = new List<string> { ",", "\n" };
+        protected const string CustomDelimiterIdentifier = "//";
+        protected readonly List<string> FormatDelimiter = new List<string> {"]["};
+        protected readonly List<string> StringNumberDelimiters = new List<string> {",", "\n"};
+
+        protected string FormatString = string.Empty;
+        protected List<double> NumberList;
 
         protected string NumberString = string.Empty;
 
         protected List<string> ValueList;
-        protected List<double> NumberList;
-
-        protected string FormatString = string.Empty;
-
-        protected const string CustomDelimiterIdentifier = "//";
-        protected readonly List<string> FormatDelimiter = new List<string> { "][" };
 
         public double Result { get; protected set; }
 
@@ -32,11 +31,12 @@ namespace StringCalculatorLib
                 Result = 0;
                 return Result;
             }
+
             Result = listOfNumbers[0];
 
-            for (int i = 1; i < listOfNumbers.Count; i++)
+            for (var i = 1; i < listOfNumbers.Count; i++)
             {
-                double x = listOfNumbers[i];
+                var x = listOfNumbers[i];
                 Result -= x;
             }
 
@@ -58,11 +58,12 @@ namespace StringCalculatorLib
                 Result = 0;
                 return Result;
             }
+
             Result = listOfNumbers[0];
 
-            for (int i = 1; i < listOfNumbers.Count; i++)
+            for (var i = 1; i < listOfNumbers.Count; i++)
             {
-                double x = listOfNumbers[i];
+                var x = listOfNumbers[i];
                 Result = Result * x;
             }
 
@@ -86,11 +87,12 @@ namespace StringCalculatorLib
                 Result = 0;
                 return Result;
             }
+
             Result = listOfNumbers[0];
 
-            for (int i = 1; i < listOfNumbers.Count; i++)
+            for (var i = 1; i < listOfNumbers.Count; i++)
             {
-                double x = listOfNumbers[i];
+                var x = listOfNumbers[i];
                 Result = Result / x;
             }
 
@@ -105,11 +107,8 @@ namespace StringCalculatorLib
         {
             if (NumberList == null)
                 return string.Empty;
-            string ret = string.Empty;
-            foreach (var x in NumberList)
-            {
-                ret = ret + $"{operation}{GetDouble(x)}";
-            }
+            var ret = string.Empty;
+            foreach (var x in NumberList) ret = ret + $"{operation}{GetDouble(x)}";
             return ret.Substring(1, ret.Length - 1) + " = " + Result;
         }
 
@@ -141,7 +140,7 @@ namespace StringCalculatorLib
                     {
                         NumberString = stringNumberInput.Substring(splitter + 2);
                         FormatString = stringNumberInput.Substring(3, splitter - 3);
-                        string[] additionalDeliminators = FormatString.Split(FormatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                        var additionalDeliminators = FormatString.Split(FormatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
                         StringNumberDelimiters.AddRange(additionalDeliminators);
                     }
@@ -158,10 +157,7 @@ namespace StringCalculatorLib
 
             var negativeNumberList = (from x in NumberList where x < 0 select x).ToList();
 
-            if (negativeNumberList.Any())
-            {
-                throw new NegativeNumberException(negativeNumberList);
-            }
+            if (negativeNumberList.Any()) throw new NegativeNumberException(negativeNumberList);
 
             NumberList = NumberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
             return NumberList;
@@ -178,15 +174,15 @@ namespace StringCalculatorLib
 
         protected double GetDouble(object val)
         {
-            if (IsNumeric(val))
-            {
-                return double.Parse(val.ToString());
-            }
+            if (IsNumeric(val)) return double.Parse(val.ToString());
 
             return 0;
         }
 
-        protected bool IsNumeric(object val) => double.TryParse(val.ToString(), out _);
+        protected bool IsNumeric(object val)
+        {
+            return double.TryParse(val.ToString(), out _);
+        }
 
         protected bool IsLessThanOrEqualTo(double threshold, double val)
         {

@@ -24,12 +24,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            Dummy svc = new Dummy();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new Dummy();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -45,12 +45,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq01 svc = new CalculatorServiceReq01();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq01();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -67,12 +67,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq02 svc = new CalculatorServiceReq02();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq02();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -90,12 +90,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq03 svc = new CalculatorServiceReq03();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq03();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -133,8 +133,8 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq04 svc = new CalculatorServiceReq04();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq04();
+            var calc = new StringCalculator(svc);
 
             // Act
 
@@ -156,12 +156,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq05 svc = new CalculatorServiceReq05();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq05();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -182,12 +182,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq06 svc = new CalculatorServiceReq06();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq06();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -210,12 +210,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq07 svc = new CalculatorServiceReq07();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq07();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -238,12 +238,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq08();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Add(caclString);
+            var actual = calc.Add(caclString);
 
             // Assert
 
@@ -256,12 +256,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq08();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Subtract(caclString);
+            var actual = calc.Subtract(caclString);
 
             // Assert
 
@@ -274,12 +274,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq08();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Multiply(caclString);
+            var actual = calc.Multiply(caclString);
 
             // Assert
 
@@ -293,12 +293,12 @@ namespace StringCalculatorLib.Tests
         {
             // Arrange
 
-            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq08();
+            var calc = new StringCalculator(svc);
 
             // Act
 
-            double actual = calc.Divide(caclString);
+            var actual = calc.Divide(caclString);
 
             // Assert
 

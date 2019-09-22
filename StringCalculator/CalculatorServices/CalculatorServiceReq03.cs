@@ -18,10 +18,10 @@ namespace StringCalculatorLib.CalculatorServices
 
             NumberList = (from x in ValueList select GetDouble(x)).ToList();
 
-            this.Result = NumberList.Sum();
+            Result = NumberList.Sum();
 
             Debug.WriteLine(NumberString);
-            Debug.WriteLine(this.GetResultFormula("+"));
+            Debug.WriteLine(GetResultFormula("+"));
             Debug.WriteLine(Result);
 
             return Result;

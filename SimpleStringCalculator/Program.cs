@@ -1,6 +1,6 @@
-﻿using StringCalculatorLib.CalculatorServices;
-using System;
+﻿using System;
 using StringCalculatorLib;
+using StringCalculatorLib.CalculatorServices;
 
 namespace SimpleStringCalculator
 {
@@ -15,8 +15,8 @@ namespace SimpleStringCalculator
 
             var calcInfo = Console.ReadLine();
 
-            CalculatorServiceReq08 svc = new CalculatorServiceReq08();
-            StringCalculator calc = new StringCalculator(svc);
+            var svc = new CalculatorServiceReq08();
+            var calc = new StringCalculator(svc);
 
             try
             {

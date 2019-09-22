@@ -34,12 +34,9 @@ namespace StringCalculatorLib.CalculatorServices
                     {
                         NumberString = stringNumberInput.Substring(splitter + 2);
                         FormatString = stringNumberInput.Substring(3, splitter - 3);
-                        string[] additionalDeliminators = FormatString.Split(FormatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                        var additionalDeliminators = FormatString.Split(FormatDelimiter.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
-                        if (additionalDeliminators.Length > 1)
-                        {
-                            throw new Exception("Too many custom delimiters!");
-                        }
+                        if (additionalDeliminators.Length > 1) throw new Exception("Too many custom delimiters!");
 
                         StringNumberDelimiters.AddRange(additionalDeliminators);
                     }
@@ -57,17 +54,14 @@ namespace StringCalculatorLib.CalculatorServices
 
             var negativeNumberList = (from x in NumberList where x < 0 select x).ToList();
 
-            if (negativeNumberList.Any())
-            {
-                throw new NegativeNumberException(negativeNumberList);
-            }
+            if (negativeNumberList.Any()) throw new NegativeNumberException(negativeNumberList);
 
             NumberList = NumberList.Where(x => IsLessThanOrEqualTo(1000, x)).ToList();
 
-            this.Result = NumberList.Sum();
+            Result = NumberList.Sum();
 
             Debug.WriteLine(NumberString);
-            Debug.WriteLine(this.GetResultFormula("+"));
+            Debug.WriteLine(GetResultFormula("+"));
             Debug.WriteLine(Result);
 
             return Result;

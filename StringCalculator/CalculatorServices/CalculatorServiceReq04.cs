@@ -20,16 +20,13 @@ namespace StringCalculatorLib.CalculatorServices
 
             var negativeNumberList = (from x in NumberList where x < 0 select x).ToList();
 
-            if (negativeNumberList.Any())
-            {
-                throw new NegativeNumberException(negativeNumberList);
-            }
+            if (negativeNumberList.Any()) throw new NegativeNumberException(negativeNumberList);
 
 
-            this.Result = NumberList.Sum();
+            Result = NumberList.Sum();
 
             Debug.WriteLine(NumberString);
-            Debug.WriteLine(this.GetResultFormula("+"));
+            Debug.WriteLine(GetResultFormula("+"));
             Debug.WriteLine(Result);
 
             return Result;

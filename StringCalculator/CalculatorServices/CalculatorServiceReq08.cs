@@ -11,10 +11,10 @@ namespace StringCalculatorLib.CalculatorServices
 
             var listOfNumbers = GetListOfNumbersFromInput(stringNumberInput);
 
-            this.Result = listOfNumbers.Sum();
+            Result = listOfNumbers.Sum();
 
             Debug.WriteLine(NumberString);
-            Debug.WriteLine(this.GetResultFormula("+"));
+            Debug.WriteLine(GetResultFormula("+"));
             Debug.WriteLine(Result);
 
             return Result;
